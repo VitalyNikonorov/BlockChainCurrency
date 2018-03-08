@@ -1,9 +1,9 @@
-package net.nikonorov.blockchaincurrency.presentation
+package net.nikonorov.blockchaincurrency.presentation.main
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import net.nikonorov.blockchaincurrency.R
-import net.nikonorov.blockchaincurrency.presentation.main.MainFragment
+import net.nikonorov.blockchaincurrency.presentation.main.view.MainFragment
 
 /**
  * Created by Vitaly Nikonorov on 08.03.2018.
