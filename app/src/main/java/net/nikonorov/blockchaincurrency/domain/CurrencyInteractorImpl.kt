@@ -9,8 +9,8 @@ import net.nikonorov.blockchaincurrency.data.NetworkClient
  */
 class CurrencyInteractorImpl(private val networkClient: NetworkClient): CurrencyInteractor {
 
-    override fun getCurrencies(): Single<List<String>> {
-        return networkClient.getCurrencies()
+    override fun getPairs(): Single<List<String>> {
+        return networkClient.getPairs()
     }
 
 }

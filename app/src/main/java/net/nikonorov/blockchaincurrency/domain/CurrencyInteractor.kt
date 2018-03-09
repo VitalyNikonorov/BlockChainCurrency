@@ -8,6 +8,6 @@ import io.reactivex.Single
  */
 interface CurrencyInteractor {
 
-    fun getCurrencies(): Single<List<String>>
+    fun getPairs(): Single<List<String>>
 
 }

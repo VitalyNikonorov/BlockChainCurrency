@@ -9,7 +9,7 @@ import retrofit2.Retrofit
  */
 class NetworkClient(builder: Retrofit.Builder) {
     companion object {
-        val BASE_API_URL = "https://api.exmo.com/v1/"
+        val BASE_API_URL = "https://api.bitfinex.com/v1/"
     }
     private val api: Api
 
@@ -17,7 +17,7 @@ class NetworkClient(builder: Retrofit.Builder) {
         api = builder.baseUrl(BASE_API_URL).build().create(Api::class.java)
     }
 
-    fun getCurrencies(): Single<List<String>> {
-        return api.getCurrencies()
+    fun getPairs(): Single<List<String>> {
+        return api.getPairs()
     }
 }

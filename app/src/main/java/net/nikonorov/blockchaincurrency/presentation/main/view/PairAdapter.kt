@@ -11,24 +11,24 @@ import net.nikonorov.blockchaincurrency.R
  * Created by Vitaly Nikonorov on 09.03.2018.
  * email@nikonorov.net
  */
-class CurrencyAdapter: RecyclerView.Adapter<CurrencyAdapter.CurrencyViewHolder>() {
+class PairAdapter : RecyclerView.Adapter<PairAdapter.PairViewHolder>() {
 
     private val items: MutableList<String> = ArrayList()
 
-    override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PairViewHolder, position: Int) {
         holder.caption.text = items[position]
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrencyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.currencies_item, parent, false)
-        return CurrencyViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PairViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.pair_item, parent, false)
+        return PairViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
 
-    class CurrencyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class PairViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var caption: TextView = itemView.findViewById(R.id.item_caption)
     }
 

@@ -23,7 +23,7 @@ class MainFragment : Fragment(), MainView {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: CurrencyAdapter
+    private lateinit var adapter: PairAdapter
     private lateinit var emptyList: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +36,7 @@ class MainFragment : Fragment(), MainView {
         progressBar = view.findViewById(R.id.progress_bar)
         recyclerView = view.findViewById(R.id.main_recycler)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = CurrencyAdapter()
+        adapter = PairAdapter()
         recyclerView.adapter = adapter
         emptyList = view.findViewById(R.id.empty_list)
         return view

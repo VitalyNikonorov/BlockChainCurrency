@@ -9,7 +9,7 @@ import retrofit2.http.GET
  */
 interface Api {
 
-    @GET("currency/")
-    fun getCurrencies(): Single<List<String>>
+    @GET("symbols/")
+    fun getPairs(): Single<List<String>>
 
 }
