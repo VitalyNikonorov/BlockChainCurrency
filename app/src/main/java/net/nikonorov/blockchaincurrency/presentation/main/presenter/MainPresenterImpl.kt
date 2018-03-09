@@ -13,14 +13,27 @@ import net.nikonorov.blockchaincurrency.presentation.mvp.AbstractMvpPresenter
  */
 class MainPresenterImpl(private val currencyInteractor: CurrencyInteractor) : AbstractMvpPresenter<MainView>(), MainPresenter {
 
+    private val currencies: MutableList<String> = ArrayList()
+
     override fun attachView(view: MainView) {
         super.attachView(view)
         currencyInteractor.getCurrencies()
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(this::addDisposable)
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe({
+                    this.view?.setEmptyListVisible(false)
+                    this.view?.setProgressBarVisible(true)
+                    this.view?.setMainListVisible(false)
+                })
                 .subscribe({
+                    currencies.clear()
+                    currencies.addAll(it)
                     Log.d("Data received: ", it.toString())
+                    this.view?.setProgressBarVisible(false)
+                    this.view?.setEmptyListVisible(currencies.isEmpty())
+                    this.view?.setMainListVisible(!currencies.isEmpty())
+                    this.view?.showCurrencies(currencies)
                 }, { it.printStackTrace() })
     }
 

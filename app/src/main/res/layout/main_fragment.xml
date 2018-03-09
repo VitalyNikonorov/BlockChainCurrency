@@ -15,4 +15,23 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
+    <LinearLayout
+        android:id="@+id/empty_list"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_format_list_bulleted" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_list"/>
+    </LinearLayout>
+
 </FrameLayout>

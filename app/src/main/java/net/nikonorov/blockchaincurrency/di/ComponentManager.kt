@@ -11,8 +11,8 @@ import net.nikonorov.blockchaincurrency.di.main.MainScreenModule
 
 object ComponentManager {
 
-    private var appComponent: AppComponent? = null
-    private var mainScreenComponent: MainScreenComponent? = null
+    private lateinit var appComponent: AppComponent
+    val mainScreenComponent: MainScreenComponent by lazy { appComponent.plus(MainScreenModule()) }
 
     fun initAppComponent(context: Context) {
         appComponent = buildComponent(context)
@@ -23,12 +23,4 @@ object ComponentManager {
                 .appModule(AppModule(context))
                 .build()
     }
-
-    fun getMainScreenComponent(): MainScreenComponent? {
-        if (mainScreenComponent == null) {
-            mainScreenComponent = appComponent?.plus(MainScreenModule())
-        }
-        return mainScreenComponent
-    }
-
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BlockChainCurrency</string>
+    <string name="empty_list">Sorry, but, it seems there is no data</string>
 </resources>

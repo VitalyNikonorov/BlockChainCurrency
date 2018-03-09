@@ -7,9 +7,9 @@ import io.reactivex.disposables.Disposable
  * Created by Vitaly Nikonorov on 09.03.2018.
  * email@nikonorov.net
  */
-abstract class AbstractMvpPresenter<in V: MvpView>: MvpPresenter<V> {
+abstract class AbstractMvpPresenter<V: MvpView>: MvpPresenter<V> {
 
-    private var view : V? = null
+    protected var view : V? = null
     private var compositeDisposable : CompositeDisposable? = CompositeDisposable()
 
     override fun attachView(view : V) {
