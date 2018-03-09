@@ -8,6 +8,10 @@ import net.nikonorov.blockchaincurrency.di.ComponentManager
  * email@nikonorov.net
  */
 class App : Application() {
+    companion object {
+        val DEBUG_NETWORK = true
+    }
+
     override fun onCreate() {
         super.onCreate()
         ComponentManager.initAppComponent(this.applicationContext)

@@ -2,6 +2,7 @@ package net.nikonorov.blockchaincurrency.di.main
 
 import dagger.Module
 import dagger.Provides
+import net.nikonorov.blockchaincurrency.domain.CurrencyInteractor
 import net.nikonorov.blockchaincurrency.presentation.main.presenter.MainPresenter
 import net.nikonorov.blockchaincurrency.presentation.main.presenter.MainPresenterImpl
 
@@ -14,6 +15,6 @@ class MainScreenModule {
 
     @Provides
     @MainScreenSope
-    fun provideMainPresenter() : MainPresenter = MainPresenterImpl()
+    fun provideMainPresenter(currencyInteractor: CurrencyInteractor) : MainPresenter = MainPresenterImpl(currencyInteractor)
 
 }
