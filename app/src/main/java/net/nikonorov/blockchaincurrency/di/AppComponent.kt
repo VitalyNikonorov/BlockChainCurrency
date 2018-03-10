@@ -13,7 +13,7 @@ import javax.inject.Singleton
  * email@nikonorov.net
  */
 @Singleton
-@Component(modules = arrayOf(AppModule::class))
+@Component(modules = arrayOf(AppModule::class, NavigationModule::class, NetworkModule::class))
 interface AppComponent {
 
     fun plus(mainScreenModule: MainScreenModule) : MainScreenComponent

@@ -28,19 +28,25 @@ object ComponentManager {
                 .build()
     }
 
-    fun getMainScreenComponent(): MainScreenComponent {
-        return appComponent.plus(MainScreenModule())
+    @Synchronized fun getMainScreenComponent(): MainScreenComponent {
+        if (mainScreenComponent == null) {
+            mainScreenComponent = appComponent.plus(MainScreenModule())
+        }
+        return mainScreenComponent as MainScreenComponent
     }
 
-    fun getPairInfoScreenComponent(): PairInfoScreenComponent {
-        return appComponent.plus(PairInfoModule())
+    @Synchronized fun getPairInfoScreenComponent(): PairInfoScreenComponent {
+        if (pairInfoScreenComponent == null) {
+            pairInfoScreenComponent = appComponent.plus(PairInfoModule())
+        }
+        return pairInfoScreenComponent as PairInfoScreenComponent
     }
 
-    fun removeMainScreenComponent() {
+    @Synchronized fun removeMainScreenComponent() {
         mainScreenComponent = null
     }
 
-    fun removePairInfoScreenComponent() {
+    @Synchronized fun removePairInfoScreenComponent() {
         pairInfoScreenComponent = null
     }
 }

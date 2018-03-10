@@ -26,57 +26,9 @@ import javax.inject.Singleton
 @Module
 class AppModule(private val context: Context) {
 
-    private val cicerone = Cicerone.create()
-
     @Provides
     @Singleton
     fun provideContext() = context
-
-    @Provides
-    @Singleton
-    fun provideRouter(): Router {
-        return cicerone.router
-    }
-
-    @Provides
-    @Singleton
-    fun provideNavigatorHolder(): NavigatorHolder {
-        return cicerone.navigatorHolder
-    }
-
-    @Provides
-    @Singleton
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-        val interceptor = HttpLoggingInterceptor()
-        if (App.DEBUG_NETWORK && BuildConfig.DEBUG) {
-            interceptor.level = HttpLoggingInterceptor.Level.BASIC
-        } else {
-            interceptor.level = HttpLoggingInterceptor.Level.NONE
-        }
-        return interceptor
-    }
-
-    @Provides
-    @Singleton
-    fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
-        return OkHttpClient.Builder().addInterceptor(interceptor).build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideRetrofitBuilder(okHttpClient: OkHttpClient): Retrofit.Builder {
-        return Retrofit
-                .Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(okHttpClient)
-    }
-
-    @Provides
-    @Singleton
-    fun provideNetworkClient(builder: Retrofit.Builder): NetworkClient {
-        return NetworkClient(builder)
-    }
 
     @Provides
     @Singleton
