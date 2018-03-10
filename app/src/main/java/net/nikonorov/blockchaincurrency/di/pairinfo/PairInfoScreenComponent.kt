@@ -7,7 +7,7 @@ import net.nikonorov.blockchaincurrency.presentation.info.view.PairInfoFragment
  * Created by Vitaly Nikonorov on 10.03.2018.
  * email@nikonorov.net
  */
-@Subcomponent(modules = [(PairInfoModule::class)])
+@Subcomponent(modules = arrayOf(PairInfoModule::class))
 @PairInfoScreenScope
 interface PairInfoScreenComponent {
     fun inject(pairInfoFragment: PairInfoFragment)

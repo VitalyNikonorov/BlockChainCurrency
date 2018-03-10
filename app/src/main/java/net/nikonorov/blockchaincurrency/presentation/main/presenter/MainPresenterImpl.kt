@@ -12,7 +12,6 @@ import net.nikonorov.blockchaincurrency.presentation.mvp.AbstractMvpPresenter
  * email@nikonorov.net
  */
 class MainPresenterImpl(private val currencyInteractor: CurrencyInteractor) : AbstractMvpPresenter<MainView>(), MainPresenter {
-
     private val pairs: MutableList<String> = ArrayList()
 
     override fun attachView(view: MainView) {
@@ -35,6 +34,10 @@ class MainPresenterImpl(private val currencyInteractor: CurrencyInteractor) : Ab
                     this.view?.setMainListVisible(!pairs.isEmpty())
                     this.view?.showCurrencies(pairs)
                 }, { it.printStackTrace() })
+    }
+
+    override fun onItemClick(position: Int) {
+        view?.openPairInfoScreen(pairs[position])
     }
 
 }

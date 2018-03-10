@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import net.nikonorov.blockchaincurrency.R
 import net.nikonorov.blockchaincurrency.di.ComponentManager
+import net.nikonorov.blockchaincurrency.presentation.main.MainActivity
 import net.nikonorov.blockchaincurrency.presentation.main.presenter.MainPresenter
 import javax.inject.Inject
 
@@ -41,7 +42,7 @@ class MainFragment : Fragment(), MainView {
         progressBar = view.findViewById(R.id.progress_bar)
         recyclerView = view.findViewById(R.id.main_recycler)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = PairAdapter()
+        adapter = PairAdapter(presenter)
         recyclerView.adapter = adapter
         emptyList = view.findViewById(R.id.empty_list)
         return view
@@ -75,5 +76,12 @@ class MainFragment : Fragment(), MainView {
 
     override fun setMainListVisible(visible: Boolean) {
         recyclerView.visibility = if (visible) View.VISIBLE else View.GONE
+    }
+
+    override fun openPairInfoScreen(pair: String) {
+        if (activity != null) {
+            val mainActivity = activity as MainActivity
+            mainActivity.openDetailsScreen()
+        }
     }
 }

@@ -16,4 +16,6 @@ interface MainView: MvpView {
     fun showError(message: String)
 
     fun showCurrencies(list: List<String>)
+
+    fun openPairInfoScreen(pair: String)
 }

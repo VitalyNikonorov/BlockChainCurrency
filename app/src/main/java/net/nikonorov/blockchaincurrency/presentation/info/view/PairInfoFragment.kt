@@ -18,7 +18,7 @@ import javax.inject.Inject
 class PairInfoFragment : Fragment(), PairInfoView {
 
     @Inject
-    private lateinit var presenter: PairInfoPresenter
+    lateinit var presenter: PairInfoPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

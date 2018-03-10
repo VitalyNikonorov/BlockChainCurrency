@@ -3,6 +3,7 @@ package net.nikonorov.blockchaincurrency.presentation.main
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import net.nikonorov.blockchaincurrency.R
+import net.nikonorov.blockchaincurrency.presentation.info.view.PairInfoFragment
 import net.nikonorov.blockchaincurrency.presentation.main.view.MainFragment
 
 /**
@@ -23,5 +24,12 @@ class MainActivity : AppCompatActivity() {
                     .commit()
         }
         window.setBackgroundDrawable(null)
+    }
+
+    fun openDetailsScreen() {
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_place, PairInfoFragment(), PairInfoFragment::class.java.simpleName)
+                .commit()
     }
 }
