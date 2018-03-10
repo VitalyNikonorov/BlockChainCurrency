@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import net.nikonorov.blockchaincurrency.R
 import net.nikonorov.blockchaincurrency.di.ComponentManager
-import net.nikonorov.blockchaincurrency.presentation.MainActivity
 import net.nikonorov.blockchaincurrency.presentation.main.presenter.MainPresenter
 import javax.inject.Inject
 
