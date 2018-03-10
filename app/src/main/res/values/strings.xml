@@ -11,4 +11,6 @@
     <string name="timestamp_caption">Timestamp of valid data: </string>
     <string name="pair_screen_title">Detail info for pair: %1$s</string>
     <string name="main_screen_title">Currency pair list</string>
+    <string name="error_description">An error has occurred. Repeat your request later</string>
+    <string name="repeat">Repeat</string>
 </resources>

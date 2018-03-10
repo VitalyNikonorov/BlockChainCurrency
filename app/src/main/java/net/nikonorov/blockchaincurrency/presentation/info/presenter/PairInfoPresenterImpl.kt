@@ -1,6 +1,7 @@
 package net.nikonorov.blockchaincurrency.presentation.info.presenter
 
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import net.nikonorov.blockchaincurrency.domain.CurrencyInteractor
 import net.nikonorov.blockchaincurrency.presentation.info.view.PairInfoView
@@ -14,6 +15,7 @@ import ru.terrakok.cicerone.Router
  */
 class PairInfoPresenterImpl(private val currencyInteractor: CurrencyInteractor, router: Router) : AbstractMvpPresenter<PairInfoView>(router), PairInfoPresenter {
     private lateinit var pair: String
+    private var pairInfoDisposable: Disposable? = null
 
     /**
      * Here we suppose than data is rapidly changing and we do not cache it
@@ -22,25 +24,39 @@ class PairInfoPresenterImpl(private val currencyInteractor: CurrencyInteractor, 
      */
     override fun attachView(view: PairInfoView) {
         super.attachView(view)
-        currencyInteractor.getPairInfo(pair)
+        loadPairInfo()
+    }
+
+    private fun loadPairInfo() {
+        pairInfoDisposable?.dispose()
+        pairInfoDisposable = currencyInteractor.getPairInfo(pair)
                 .doOnSubscribe(this::addDisposable)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe({
                     this.view?.setProgressBarVisible(true)
                     this.view?.setMainViewVisible(false)
+                    this.view?.setErrorViewVisible(false)
                 })
                 .subscribe({
                     this.view?.setProgressBarVisible(false)
                     this.view?.setMainViewVisible(true)
+                    this.view?.setErrorViewVisible(false)
                     this.view?.showInfo(it)
                 }, {
                     it.printStackTrace()
+                    this.view?.setProgressBarVisible(false)
+                    this.view?.setMainViewVisible(false)
+                    this.view?.setErrorViewVisible(true)
                 })
     }
 
     override fun initPair(pair: String) {
         this.pair = pair
+    }
+
+    override fun onRetryLoadingClick() {
+        loadPairInfo()
     }
 
 }

@@ -11,14 +11,15 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 
     <RelativeLayout
         android:id="@+id/mainView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:id="@+id/mid_price_item"
             android:layout_width="match_parent"
@@ -186,4 +187,35 @@
                 android:textSize="18sp" />
         </LinearLayout>
     </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/errorView"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_error_outline_black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="72dp"
+            android:gravity="center"
+            android:text="@string/error_description"
+            android:textSize="26sp" />
+
+        <Button
+            android:id="@+id/repeatButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
+            android:text="@string/repeat" />
+
+    </FrameLayout>
 </FrameLayout>

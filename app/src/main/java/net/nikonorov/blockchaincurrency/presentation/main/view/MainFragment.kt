@@ -20,6 +20,7 @@ class MainFragment : Fragment(), MainView {
     @Inject
     lateinit var presenter: MainPresenter
     private lateinit var adapter: PairAdapter
+
     companion object {
         fun newInstance(): MainFragment {
             return MainFragment()
@@ -46,6 +47,7 @@ class MainFragment : Fragment(), MainView {
         adapter = PairAdapter(presenter)
         mainRecyclerView.adapter = adapter
         activity?.title = getString(R.string.main_screen_title)
+        repeatButton.setOnClickListener({ presenter.onRepeatLoadingClick() })
     }
 
     override fun onStart() {
@@ -66,15 +68,15 @@ class MainFragment : Fragment(), MainView {
         emptyList.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
-    override fun showError(message: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun showCurrencies(list: List<String>) {
         adapter.setData(list)
     }
 
     override fun setMainListVisible(visible: Boolean) {
         mainRecyclerView.visibility = if (visible) View.VISIBLE else View.GONE
+    }
+
+    override fun setErrorViewVisible(visible: Boolean) {
+        errorView.visibility = if (visible) View.VISIBLE else View.GONE
     }
 }

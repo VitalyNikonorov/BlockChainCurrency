@@ -9,4 +9,7 @@ import net.nikonorov.blockchaincurrency.presentation.mvp.MvpPresenter
  * email@nikonorov.net
  */
 interface MainPresenter: MvpPresenter<MainView>, PairAdapter.OnPairItemClickListener {
+
+    fun onRepeatLoadingClick()
+
 }

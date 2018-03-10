@@ -11,4 +11,6 @@ interface PairInfoPresenter: MvpPresenter<PairInfoView> {
 
     fun initPair(pair: String)
 
+    fun onRetryLoadingClick()
+
 }

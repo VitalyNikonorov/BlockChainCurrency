@@ -13,7 +13,7 @@ interface MainView: MvpView {
 
     fun setMainListVisible(visible: Boolean)
 
-    fun showError(message: String)
+    fun setErrorViewVisible(visible: Boolean)
 
     fun showCurrencies(list: List<String>)
 }

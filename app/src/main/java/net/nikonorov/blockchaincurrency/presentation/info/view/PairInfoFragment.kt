@@ -22,7 +22,7 @@ class PairInfoFragment : Fragment(), PairInfoView {
     lateinit var presenter: PairInfoPresenter
 
     companion object {
-        private val KEY_PAIR = "key_pair"
+        private const val KEY_PAIR = "key_pair"
 
         fun newInstance(pair: String): PairInfoFragment {
             val fragment =  PairInfoFragment()
@@ -46,6 +46,7 @@ class PairInfoFragment : Fragment(), PairInfoView {
         super.onViewCreated(view, savedInstanceState)
         val pair = arguments?.getString(KEY_PAIR) ?: throw IllegalArgumentException("Pair not initialized!")
         activity?.title = getString(R.string.pair_screen_title, pair)
+        repeatButton.setOnClickListener({ presenter.onRetryLoadingClick() })
     }
 
     override fun onDestroy() {
@@ -83,4 +84,7 @@ class PairInfoFragment : Fragment(), PairInfoView {
         mainView.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
+    override fun setErrorViewVisible(visible: Boolean) {
+        errorView.visibility = if (visible) View.VISIBLE else View.GONE
+    }
 }

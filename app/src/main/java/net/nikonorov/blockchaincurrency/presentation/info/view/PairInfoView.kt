@@ -15,4 +15,5 @@ interface PairInfoView: MvpView {
 
     fun showInfo(pairInfo: PairInfo)
 
+    fun setErrorViewVisible(visible: Boolean)
 }
