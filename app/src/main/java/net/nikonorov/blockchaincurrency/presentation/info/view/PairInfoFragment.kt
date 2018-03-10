@@ -41,6 +41,12 @@ class PairInfoFragment : Fragment(), PairInfoView {
         return inflater.inflate(R.layout.pair_info, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val pair = arguments?.getString(KEY_PAIR) ?: throw IllegalArgumentException("Pair not initialized!")
+        activity?.title = getString(R.string.pair_screen_title, pair)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         ComponentManager.removePairInfoScreenComponent()

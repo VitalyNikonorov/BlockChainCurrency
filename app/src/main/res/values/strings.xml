@@ -9,4 +9,6 @@
     <string name="highest_price_caption">Highest trade price: </string>
     <string name="trade_volume_caption">Daily trade volume: </string>
     <string name="timestamp_caption">Timestamp of valid data: </string>
+    <string name="pair_screen_title">Detail info for pair: %1$s</string>
+    <string name="main_screen_title">Currency pair list</string>
 </resources>

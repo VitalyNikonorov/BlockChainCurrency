@@ -54,6 +54,11 @@ class MainFragment : Fragment(), MainView {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity?.title = getString(R.string.main_screen_title)
+    }
+
     override fun onStart() {
         super.onStart()
         presenter.attachView(this)
