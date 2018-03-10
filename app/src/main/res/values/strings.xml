@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">BlockChainCurrency</string>
     <string name="empty_list">Sorry, but, it seems there is no data</string>
+    <string name="mid_price_caption">Middle price: </string>
+    <string name="bid_price_caption">Innermost bid: </string>
+    <string name="ask_price_caption">Innermost ask: </string>
+    <string name="last_price_caption">Last success order price: </string>
+    <string name="lowest_price_caption">Lowest trade price: </string>
+    <string name="highest_price_caption">Highest trade price: </string>
+    <string name="trade_volume_caption">Daily trade volume: </string>
+    <string name="timestamp_caption">Timestamp of valid data: </string>
 </resources>

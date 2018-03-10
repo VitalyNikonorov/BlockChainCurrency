@@ -28,7 +28,12 @@ class MainFragment : Fragment(), MainView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ComponentManager.mainScreenComponent.inject(this)
+        ComponentManager.getMainScreenComponent().inject(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ComponentManager.removeMainScreenComponent()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

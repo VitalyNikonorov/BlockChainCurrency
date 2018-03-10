@@ -1,6 +1,7 @@
 package net.nikonorov.blockchaincurrency.data
 
 import io.reactivex.Single
+import net.nikonorov.blockchaincurrency.data.entity.PairInfo
 import retrofit2.Retrofit
 
 /**
@@ -19,5 +20,9 @@ class NetworkClient(builder: Retrofit.Builder) {
 
     fun getPairs(): Single<List<String>> {
         return api.getPairs()
+    }
+
+    fun getPairInfo(pair: String): Single<PairInfo> {
+        return api.getPairInfo(pair)
     }
 }

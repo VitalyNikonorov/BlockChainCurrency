@@ -3,6 +3,8 @@ package net.nikonorov.blockchaincurrency.di
 import android.content.Context
 import net.nikonorov.blockchaincurrency.di.main.MainScreenComponent
 import net.nikonorov.blockchaincurrency.di.main.MainScreenModule
+import net.nikonorov.blockchaincurrency.di.pairinfo.PairInfoModule
+import net.nikonorov.blockchaincurrency.di.pairinfo.PairInfoScreenComponent
 
 /**
  * Created by Vitaly Nikonorov on 08.03.2018.
@@ -12,7 +14,8 @@ import net.nikonorov.blockchaincurrency.di.main.MainScreenModule
 object ComponentManager {
 
     private lateinit var appComponent: AppComponent
-    val mainScreenComponent: MainScreenComponent by lazy { appComponent.plus(MainScreenModule()) }
+    private var mainScreenComponent: MainScreenComponent? = null
+    private var pairInfoScreenComponent: PairInfoScreenComponent? = null
 
     fun initAppComponent(context: Context) {
         appComponent = buildComponent(context)
@@ -22,5 +25,21 @@ object ComponentManager {
         return DaggerAppComponent.builder()
                 .appModule(AppModule(context))
                 .build()
+    }
+
+    fun getMainScreenComponent(): MainScreenComponent {
+        return appComponent.plus(MainScreenModule())
+    }
+
+    fun getPairInfoScreenComponent(): PairInfoScreenComponent {
+        return appComponent.plus(PairInfoModule())
+    }
+
+    fun removeMainScreenComponent() {
+        mainScreenComponent = null
+    }
+
+    fun removePairInfoScreenComponent() {
+        pairInfoScreenComponent = null
     }
 }

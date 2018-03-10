@@ -14,7 +14,7 @@ import net.nikonorov.blockchaincurrency.presentation.main.presenter.MainPresente
 class MainScreenModule {
 
     @Provides
-    @MainScreenSope
+    @MainScreenScope
     fun provideMainPresenter(currencyInteractor: CurrencyInteractor) : MainPresenter = MainPresenterImpl(currencyInteractor)
 
 }

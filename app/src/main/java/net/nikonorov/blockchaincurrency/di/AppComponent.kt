@@ -3,6 +3,8 @@ package net.nikonorov.blockchaincurrency.di
 import dagger.Component
 import net.nikonorov.blockchaincurrency.di.main.MainScreenComponent
 import net.nikonorov.blockchaincurrency.di.main.MainScreenModule
+import net.nikonorov.blockchaincurrency.di.pairinfo.PairInfoModule
+import net.nikonorov.blockchaincurrency.di.pairinfo.PairInfoScreenComponent
 import javax.inject.Singleton
 
 /**
@@ -10,9 +12,11 @@ import javax.inject.Singleton
  * email@nikonorov.net
  */
 @Singleton
-@Component(modules = arrayOf(AppModule::class))
+@Component(modules = [(AppModule::class)])
 interface AppComponent {
 
     fun plus(mainScreenModule: MainScreenModule) : MainScreenComponent
+
+    fun plus(pairInfoModule: PairInfoModule) : PairInfoScreenComponent
 
 }
