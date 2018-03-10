@@ -1,5 +1,6 @@
 package net.nikonorov.blockchaincurrency.presentation.info.view
 
+import net.nikonorov.blockchaincurrency.data.entity.PairInfo
 import net.nikonorov.blockchaincurrency.presentation.mvp.MvpView
 
 /**
@@ -7,4 +8,11 @@ import net.nikonorov.blockchaincurrency.presentation.mvp.MvpView
  * email@nikonorov.net
  */
 interface PairInfoView: MvpView {
+
+    fun setProgressBarVisible(visible: Boolean)
+
+    fun setMainViewVisible(visible: Boolean)
+
+    fun showInfo(pairInfo: PairInfo)
+
 }

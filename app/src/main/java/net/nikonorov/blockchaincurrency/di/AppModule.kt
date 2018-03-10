@@ -1,9 +1,11 @@
 package net.nikonorov.blockchaincurrency.di
 
 import android.content.Context
+import android.os.Build
 import dagger.Module
 import dagger.Provides
 import net.nikonorov.blockchaincurrency.App
+import net.nikonorov.blockchaincurrency.BuildConfig
 import net.nikonorov.blockchaincurrency.data.NetworkClient
 import net.nikonorov.blockchaincurrency.domain.CurrencyInteractor
 import net.nikonorov.blockchaincurrency.domain.CurrencyInteractorImpl
@@ -48,7 +50,7 @@ class AppModule(private val context: Context) {
     @Singleton
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor()
-        if (App.DEBUG_NETWORK) {
+        if (App.DEBUG_NETWORK && BuildConfig.DEBUG) {
             interceptor.level = HttpLoggingInterceptor.Level.BASIC
         } else {
             interceptor.level = HttpLoggingInterceptor.Level.NONE
@@ -58,7 +60,7 @@ class AppModule(private val context: Context) {
 
     @Provides
     @Singleton
-    fun provideOkhttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder().addInterceptor(interceptor).build()
     }
 

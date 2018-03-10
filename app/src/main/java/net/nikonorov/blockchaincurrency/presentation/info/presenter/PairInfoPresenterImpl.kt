@@ -1,6 +1,5 @@
 package net.nikonorov.blockchaincurrency.presentation.info.presenter
 
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import net.nikonorov.blockchaincurrency.domain.CurrencyInteractor
@@ -27,8 +26,14 @@ class PairInfoPresenterImpl(private val currencyInteractor: CurrencyInteractor, 
                 .doOnSubscribe(this::addDisposable)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe({
+                    this.view?.setProgressBarVisible(true)
+                    this.view?.setMainViewVisible(false)
+                })
                 .subscribe({
-                    Log.d("Received data: ", it.toString())
+                    this.view?.setProgressBarVisible(false)
+                    this.view?.setMainViewVisible(true)
+                    this.view?.showInfo(it)
                 }, {
                     it.printStackTrace()
                 })
