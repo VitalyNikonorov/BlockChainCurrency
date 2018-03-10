@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import kotlinx.android.synthetic.main.pair_item.view.*
 import net.nikonorov.blockchaincurrency.R
 
 /**
@@ -21,7 +21,7 @@ class PairAdapter(private val listener: OnPairItemClickListener) : RecyclerView.
 
 
     override fun onBindViewHolder(holder: PairViewHolder, position: Int) {
-        holder.caption.text = items[position]
+        holder.bindPair(items[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PairViewHolder {
@@ -34,7 +34,9 @@ class PairAdapter(private val listener: OnPairItemClickListener) : RecyclerView.
     }
 
     class PairViewHolder(itemView: View, listener: OnPairItemClickListener): RecyclerView.ViewHolder(itemView) {
-        var caption: TextView = itemView.findViewById(R.id.item_caption)
+        fun bindPair(pairCaption: String) {
+            itemView.itemCaption.text = pairCaption
+        }
         init {
             itemView.setOnClickListener({
                 val position = adapterPosition

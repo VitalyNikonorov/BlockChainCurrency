@@ -3,11 +3,10 @@ package net.nikonorov.blockchaincurrency.presentation.main.view
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
+import kotlinx.android.synthetic.main.main_fragment.*
 import net.nikonorov.blockchaincurrency.R
 import net.nikonorov.blockchaincurrency.di.ComponentManager
 import net.nikonorov.blockchaincurrency.presentation.main.presenter.MainPresenter
@@ -20,12 +19,7 @@ import javax.inject.Inject
 class MainFragment : Fragment(), MainView {
     @Inject
     lateinit var presenter: MainPresenter
-
-    private lateinit var progressBar: ProgressBar
-    private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PairAdapter
-    private lateinit var emptyList: View
-
     companion object {
         fun newInstance(): MainFragment {
             return MainFragment()
@@ -43,18 +37,14 @@ class MainFragment : Fragment(), MainView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = layoutInflater.inflate(R.layout.main_fragment, container, false)
-        progressBar = view.findViewById(R.id.progress_bar)
-        recyclerView = view.findViewById(R.id.main_recycler)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = PairAdapter(presenter)
-        recyclerView.adapter = adapter
-        emptyList = view.findViewById(R.id.empty_list)
-        return view
+        return layoutInflater.inflate(R.layout.main_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mainRecyclerView.layoutManager = LinearLayoutManager(context)
+        adapter = PairAdapter(presenter)
+        mainRecyclerView.adapter = adapter
         activity?.title = getString(R.string.main_screen_title)
     }
 
@@ -85,6 +75,6 @@ class MainFragment : Fragment(), MainView {
     }
 
     override fun setMainListVisible(visible: Boolean) {
-        recyclerView.visibility = if (visible) View.VISIBLE else View.GONE
+        mainRecyclerView.visibility = if (visible) View.VISIBLE else View.GONE
     }
 }

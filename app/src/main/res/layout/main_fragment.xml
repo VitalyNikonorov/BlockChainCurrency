@@ -5,18 +5,18 @@
     android:background="@android:color/white">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/main_recycler"
+        android:id="@+id/mainRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <ProgressBar
-        android:id="@+id/progress_bar"
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
     <LinearLayout
-        android:id="@+id/empty_list"
+        android:id="@+id/emptyList"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical"

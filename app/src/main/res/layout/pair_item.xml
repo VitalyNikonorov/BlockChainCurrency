@@ -5,7 +5,7 @@
     android:layout_height="48dp">
 
     <TextView
-        android:id="@+id/item_caption"
+        android:id="@+id/itemCaption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"

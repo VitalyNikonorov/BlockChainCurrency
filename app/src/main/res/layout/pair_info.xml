@@ -10,13 +10,13 @@
         to extra Layout pass complexity -->
 
     <ProgressBar
-        android:id="@+id/progress_bar"
+        android:id="@+id/progressBar"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <RelativeLayout
-        android:id="@+id/main_view"
+        android:id="@+id/mainView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -31,7 +31,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/mid_price"
+                android:id="@+id/midPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -52,7 +52,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/bid_price"
+                android:id="@+id/bidPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -73,7 +73,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/ask_price"
+                android:id="@+id/askPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -94,7 +94,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/last_price"
+                android:id="@+id/lastPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -115,7 +115,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/lowest_price"
+                android:id="@+id/lowestPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -136,7 +136,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/highest_price"
+                android:id="@+id/highestPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -157,7 +157,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/trade_volume"
+                android:id="@+id/tradeVolume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
