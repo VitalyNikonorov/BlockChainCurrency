@@ -23,7 +23,7 @@ class PairInfoFragment : Fragment(), PairInfoView {
     companion object {
         private val KEY_PAIR = "key_pair"
 
-        fun newImstance(pair: String): PairInfoFragment {
+        fun newInstance(pair: String): PairInfoFragment {
             val fragment =  PairInfoFragment()
             val args = Bundle()
             args.putString(KEY_PAIR, pair)
@@ -48,6 +48,8 @@ class PairInfoFragment : Fragment(), PairInfoView {
 
     override fun onStart() {
         super.onStart()
+        val pair = arguments?.getString(KEY_PAIR) ?: throw IllegalArgumentException("Pair not initialized!")
+        presenter.initPair(pair)
         presenter.attachView(this)
     }
 

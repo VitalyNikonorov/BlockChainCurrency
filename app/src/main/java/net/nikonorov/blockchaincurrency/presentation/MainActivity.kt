@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         override fun createFragment(screenKey: String?, data: Any?): Fragment {
             return when (screenKey) {
                 Screen.MAIN_SCREEN -> MainFragment.newInstance()
-                Screen.PAIR_DETAILS_SCREEN -> PairInfoFragment.newImstance(data as String)
+                Screen.PAIR_DETAILS_SCREEN -> PairInfoFragment.newInstance(data as String)
                 else -> throw IllegalArgumentException("Unsupported screen!")
             }
         }

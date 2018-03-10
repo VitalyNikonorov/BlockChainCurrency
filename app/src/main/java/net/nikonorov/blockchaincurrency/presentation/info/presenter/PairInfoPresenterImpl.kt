@@ -11,11 +11,16 @@ import ru.terrakok.cicerone.Router
 /**
  * Created by Vitaly Nikonorov on 10.03.2018.
  * email@nikonorov.net
+ *
  */
 class PairInfoPresenterImpl(private val currencyInteractor: CurrencyInteractor, router: Router) : AbstractMvpPresenter<PairInfoView>(router), PairInfoPresenter {
+    private lateinit var pair: String
 
-    private val pair = "btcusd"
-
+    /**
+     * Here we suppose than data is rapidly changing and we do not cache it
+     * If you wanna reduce server calls, you can add caching data here or in repository
+     * and add some expiration period, after which data will be not valid
+     */
     override fun attachView(view: PairInfoView) {
         super.attachView(view)
         currencyInteractor.getPairInfo(pair)
@@ -27,6 +32,10 @@ class PairInfoPresenterImpl(private val currencyInteractor: CurrencyInteractor, 
                 }, {
                     it.printStackTrace()
                 })
+    }
+
+    override fun initPair(pair: String) {
+        this.pair = pair
     }
 
 }

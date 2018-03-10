@@ -8,4 +8,7 @@ import net.nikonorov.blockchaincurrency.presentation.mvp.MvpPresenter
  * email@nikonorov.net
  */
 interface PairInfoPresenter: MvpPresenter<PairInfoView> {
+
+    fun initPair(pair: String)
+
 }
