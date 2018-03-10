@@ -1,7 +1,6 @@
 package net.nikonorov.blockchaincurrency.di
 
 import android.content.Context
-import android.os.Build
 import dagger.Module
 import dagger.Provides
 import net.nikonorov.blockchaincurrency.App
@@ -16,9 +15,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.NavigatorHolder
-import javax.inject.Singleton
 import ru.terrakok.cicerone.Router
-
+import javax.inject.Singleton
 
 
 /**
