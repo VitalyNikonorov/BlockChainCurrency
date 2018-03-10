@@ -6,12 +6,13 @@ import io.reactivex.schedulers.Schedulers
 import net.nikonorov.blockchaincurrency.domain.CurrencyInteractor
 import net.nikonorov.blockchaincurrency.presentation.info.view.PairInfoView
 import net.nikonorov.blockchaincurrency.presentation.mvp.AbstractMvpPresenter
+import ru.terrakok.cicerone.Router
 
 /**
  * Created by Vitaly Nikonorov on 10.03.2018.
  * email@nikonorov.net
  */
-class PairInfoPresenterImpl(private val currencyInteractor: CurrencyInteractor) : AbstractMvpPresenter<PairInfoView>(), PairInfoPresenter {
+class PairInfoPresenterImpl(private val currencyInteractor: CurrencyInteractor, router: Router) : AbstractMvpPresenter<PairInfoView>(router), PairInfoPresenter {
 
     private val pair = "btcusd"
 

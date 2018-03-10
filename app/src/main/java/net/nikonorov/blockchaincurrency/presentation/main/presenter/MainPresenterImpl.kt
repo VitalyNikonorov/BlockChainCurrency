@@ -4,14 +4,16 @@ import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import net.nikonorov.blockchaincurrency.domain.CurrencyInteractor
+import net.nikonorov.blockchaincurrency.presentation.Screen
 import net.nikonorov.blockchaincurrency.presentation.main.view.MainView
 import net.nikonorov.blockchaincurrency.presentation.mvp.AbstractMvpPresenter
+import ru.terrakok.cicerone.Router
 
 /**
  * Created by Vitaly Nikonorov on 08.03.2018.
  * email@nikonorov.net
  */
-class MainPresenterImpl(private val currencyInteractor: CurrencyInteractor) : AbstractMvpPresenter<MainView>(), MainPresenter {
+class MainPresenterImpl(private val currencyInteractor: CurrencyInteractor, router: Router) : AbstractMvpPresenter<MainView>(router), MainPresenter {
     private val pairs: MutableList<String> = ArrayList()
 
     override fun attachView(view: MainView) {
@@ -37,7 +39,7 @@ class MainPresenterImpl(private val currencyInteractor: CurrencyInteractor) : Ab
     }
 
     override fun onItemClick(position: Int) {
-        view?.openPairInfoScreen(pairs[position])
+        router.navigateTo(Screen.PAIR_DETAILS_SCREEN, pairs[position])
     }
 
 }

@@ -13,7 +13,8 @@ import net.nikonorov.blockchaincurrency.di.pairinfo.PairInfoScreenComponent
 
 object ComponentManager {
 
-    private lateinit var appComponent: AppComponent
+    lateinit var appComponent: AppComponent
+        private set
     private var mainScreenComponent: MainScreenComponent? = null
     private var pairInfoScreenComponent: PairInfoScreenComponent? = null
 

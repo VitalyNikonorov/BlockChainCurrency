@@ -5,6 +5,7 @@ import dagger.Provides
 import net.nikonorov.blockchaincurrency.domain.CurrencyInteractor
 import net.nikonorov.blockchaincurrency.presentation.info.presenter.PairInfoPresenter
 import net.nikonorov.blockchaincurrency.presentation.info.presenter.PairInfoPresenterImpl
+import ru.terrakok.cicerone.Router
 
 /**
  * Created by Vitaly Nikonorov on 10.03.2018.
@@ -14,5 +15,6 @@ import net.nikonorov.blockchaincurrency.presentation.info.presenter.PairInfoPres
 class PairInfoModule {
     @Provides
     @PairInfoScreenScope
-    fun provideMainPresenter(currencyInteractor: CurrencyInteractor) : PairInfoPresenter = PairInfoPresenterImpl(currencyInteractor)
+    fun provideMainPresenter(currencyInteractor: CurrencyInteractor, router: Router) : PairInfoPresenter =
+            PairInfoPresenterImpl(currencyInteractor, router)
 }

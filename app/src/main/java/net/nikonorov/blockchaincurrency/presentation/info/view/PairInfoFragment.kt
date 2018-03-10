@@ -20,6 +20,18 @@ class PairInfoFragment : Fragment(), PairInfoView {
     @Inject
     lateinit var presenter: PairInfoPresenter
 
+    companion object {
+        private val KEY_PAIR = "key_pair"
+
+        fun newImstance(pair: String): PairInfoFragment {
+            val fragment =  PairInfoFragment()
+            val args = Bundle()
+            args.putString(KEY_PAIR, pair)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ComponentManager.getPairInfoScreenComponent().inject(this)

@@ -12,7 +12,12 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.terrakok.cicerone.Cicerone
+import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Singleton
+import ru.terrakok.cicerone.Router
+
+
 
 /**
  * Created by Vitaly Nikonorov on 08.03.2018.
@@ -21,9 +26,23 @@ import javax.inject.Singleton
 @Module
 class AppModule(private val context: Context) {
 
+    private val cicerone = Cicerone.create()
+
     @Provides
     @Singleton
     fun provideContext() = context
+
+    @Provides
+    @Singleton
+    fun provideRouter(): Router {
+        return cicerone.router
+    }
+
+    @Provides
+    @Singleton
+    fun provideNavigatorHolder(): NavigatorHolder {
+        return cicerone.navigatorHolder
+    }
 
     @Provides
     @Singleton

@@ -5,6 +5,7 @@ import net.nikonorov.blockchaincurrency.di.main.MainScreenComponent
 import net.nikonorov.blockchaincurrency.di.main.MainScreenModule
 import net.nikonorov.blockchaincurrency.di.pairinfo.PairInfoModule
 import net.nikonorov.blockchaincurrency.di.pairinfo.PairInfoScreenComponent
+import net.nikonorov.blockchaincurrency.presentation.MainActivity
 import javax.inject.Singleton
 
 /**
@@ -18,5 +19,7 @@ interface AppComponent {
     fun plus(mainScreenModule: MainScreenModule) : MainScreenComponent
 
     fun plus(pairInfoModule: PairInfoModule) : PairInfoScreenComponent
+
+    fun inject(mainActivity: MainActivity)
 
 }
