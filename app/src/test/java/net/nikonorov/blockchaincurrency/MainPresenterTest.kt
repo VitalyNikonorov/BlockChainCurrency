@@ -1,16 +1,12 @@
 package net.nikonorov.blockchaincurrency
 
 import io.reactivex.Single
-import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.plugins.RxJavaPlugins
-import io.reactivex.schedulers.Schedulers
 import net.nikonorov.blockchaincurrency.domain.CurrencyInteractor
 import net.nikonorov.blockchaincurrency.presentation.Screen
 import net.nikonorov.blockchaincurrency.presentation.main.presenter.MainPresenter
 import net.nikonorov.blockchaincurrency.presentation.main.presenter.MainPresenterImpl
 import net.nikonorov.blockchaincurrency.presentation.main.view.MainView
 import org.junit.Before
-import org.junit.BeforeClass
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.doAnswer
@@ -23,22 +19,12 @@ import java.util.*
  * Created by Vitaly Nikonorov on 11.03.2018.
  * email@nikonorov.net
  */
-class MainPresenterTest {
+class MainPresenterTest: AbstractRxTests() {
     private lateinit var mainPresenter: MainPresenter
     private lateinit var currencyInteractor: CurrencyInteractor
     private lateinit var router: Router
     private lateinit var mainView: MainView
     private val validData = arrayListOf("btcusd", "ethusd")
-
-    companion object {
-        @BeforeClass
-        @JvmStatic
-        fun setupClass() {
-            RxAndroidPlugins.setInitMainThreadSchedulerHandler { _ -> Schedulers.trampoline() }
-            RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
-            RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
-        }
-    }
 
     @Before
     fun setUp() {

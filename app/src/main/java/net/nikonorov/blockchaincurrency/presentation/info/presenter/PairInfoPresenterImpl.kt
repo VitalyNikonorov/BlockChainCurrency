@@ -7,6 +7,7 @@ import net.nikonorov.blockchaincurrency.domain.CurrencyInteractor
 import net.nikonorov.blockchaincurrency.presentation.info.view.PairInfoView
 import net.nikonorov.blockchaincurrency.presentation.mvp.AbstractMvpPresenter
 import ru.terrakok.cicerone.Router
+import timber.log.Timber
 
 /**
  * Created by Vitaly Nikonorov on 10.03.2018.
@@ -39,12 +40,13 @@ class PairInfoPresenterImpl(private val currencyInteractor: CurrencyInteractor, 
                     this.view?.setErrorViewVisible(false)
                 })
                 .subscribe({
+                    Timber.d("Received data: $it")
                     this.view?.setProgressBarVisible(false)
                     this.view?.setMainViewVisible(true)
                     this.view?.setErrorViewVisible(false)
                     this.view?.showInfo(it)
                 }, {
-                    it.printStackTrace()
+                    Timber.e(it)
                     this.view?.setProgressBarVisible(false)
                     this.view?.setMainViewVisible(false)
                     this.view?.setErrorViewVisible(true)
@@ -53,6 +55,7 @@ class PairInfoPresenterImpl(private val currencyInteractor: CurrencyInteractor, 
 
     override fun initPair(pair: String) {
         this.pair = pair
+        Timber.d("Pair: $pair initialized")
     }
 
     override fun onRetryLoadingClick() {
