@@ -9,6 +9,7 @@ import net.nikonorov.blockchaincurrency.presentation.Screen
 import net.nikonorov.blockchaincurrency.presentation.main.view.MainView
 import net.nikonorov.blockchaincurrency.presentation.mvp.AbstractMvpPresenter
 import ru.terrakok.cicerone.Router
+import timber.log.Timber
 
 /**
  * Created by Vitaly Nikonorov on 08.03.2018.
@@ -38,7 +39,7 @@ class MainPresenterImpl(private val currencyInteractor: CurrencyInteractor, rout
                 .subscribe({
                     pairs.clear()
                     pairs.addAll(it)
-                    Log.d("Data received: ", it.toString())
+                    Timber.d(it.toString())
                     this.view?.setProgressBarVisible(false)
                     this.view?.setEmptyListVisible(pairs.isEmpty())
                     this.view?.setMainListVisible(!pairs.isEmpty())

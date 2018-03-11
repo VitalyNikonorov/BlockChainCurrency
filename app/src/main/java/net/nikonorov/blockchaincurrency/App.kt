@@ -2,6 +2,8 @@ package net.nikonorov.blockchaincurrency
 
 import android.app.Application
 import net.nikonorov.blockchaincurrency.di.ComponentManager
+import net.nikonorov.blockchaincurrency.utils.LogDebugTree
+import timber.log.Timber
 
 
 /**
@@ -11,10 +13,14 @@ import net.nikonorov.blockchaincurrency.di.ComponentManager
 class App : Application() {
     companion object {
         val DEBUG_NETWORK = true
+        val DEBUG_LOG = true
     }
 
     override fun onCreate() {
         super.onCreate()
         ComponentManager.initAppComponent(this.applicationContext)
+        if (BuildConfig.DEBUG && DEBUG_LOG) {
+            Timber.plant(LogDebugTree())
+        }
     }
 }
