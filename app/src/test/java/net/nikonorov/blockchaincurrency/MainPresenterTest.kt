@@ -2,8 +2,10 @@ package net.nikonorov.blockchaincurrency
 
 import io.reactivex.Single
 import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import net.nikonorov.blockchaincurrency.domain.CurrencyInteractor
+import net.nikonorov.blockchaincurrency.presentation.Screen
 import net.nikonorov.blockchaincurrency.presentation.main.presenter.MainPresenter
 import net.nikonorov.blockchaincurrency.presentation.main.presenter.MainPresenterImpl
 import net.nikonorov.blockchaincurrency.presentation.main.view.MainView
@@ -13,6 +15,7 @@ import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.doAnswer
 import org.mockito.Mockito.mock
+import org.mockito.internal.verification.Times
 import ru.terrakok.cicerone.Router
 import java.util.*
 
@@ -25,11 +28,15 @@ class MainPresenterTest {
     private lateinit var currencyInteractor: CurrencyInteractor
     private lateinit var router: Router
     private lateinit var mainView: MainView
+    private val validData = arrayListOf("btcusd", "ethusd")
 
     companion object {
-        @BeforeClass @JvmStatic
+        @BeforeClass
+        @JvmStatic
         fun setupClass() {
             RxAndroidPlugins.setInitMainThreadSchedulerHandler { _ -> Schedulers.trampoline() }
+            RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
+            RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
         }
     }
 
@@ -39,14 +46,87 @@ class MainPresenterTest {
         router = mock(Router::class.java)
         mainView = mock(MainView::class.java)
         mainPresenter = MainPresenterImpl(currencyInteractor, router)
-        doAnswer { Single.just(Collections.EMPTY_LIST) }
-                .`when`(currencyInteractor)
-                .getPairs()
     }
 
     @Test
     fun checkInitLoading() {
+        doAnswer { Single.just(Collections.EMPTY_LIST) }
+                .`when`(currencyInteractor)
+                .getPairs()
         mainPresenter.attachView(mainView)
         Mockito.verify(currencyInteractor).getPairs()
+    }
+
+    @Test
+    fun checkEmptyListResponse() {
+        doAnswer { Single.just(Collections.EMPTY_LIST) }
+                .`when`(currencyInteractor)
+                .getPairs()
+        mainPresenter.attachView(mainView)
+        Mockito.verify(mainView, Times(2)).setMainListVisible(false)
+        Mockito.verify(mainView, Times(2)).setErrorViewVisible(false)
+
+        //start loading
+        Mockito.verify(mainView).setEmptyListVisible(false)
+        Mockito.verify(mainView).setProgressBarVisible(true)
+        //show result
+        Mockito.verify(mainView).setProgressBarVisible(false)
+        Mockito.verify(mainView).setEmptyListVisible(true)
+    }
+
+    @Test
+    fun checkErrorResponse() {
+        val errorSingle: Single<List<String>> = Single.error(Throwable("Some test error"))
+        doAnswer { errorSingle }
+                .`when`(currencyInteractor)
+                .getPairs()
+        mainPresenter.attachView(mainView)
+        Mockito.verify(mainView, Times(2)).setEmptyListVisible(false)
+        Mockito.verify(mainView, Times(2)).setMainListVisible(false)
+
+        //start loading
+        Mockito.verify(mainView).setErrorViewVisible(false)
+        Mockito.verify(mainView).setProgressBarVisible(true)
+        //show result
+        Mockito.verify(mainView).setProgressBarVisible(false)
+        Mockito.verify(mainView).setErrorViewVisible(true)
+    }
+
+    @Test
+    fun checkCorrectResponse() {
+        doAnswer { Single.just(validData) }
+                .`when`(currencyInteractor)
+                .getPairs()
+        mainPresenter.attachView(mainView)
+        Mockito.verify(mainView, Times(2)).setEmptyListVisible(false)
+        Mockito.verify(mainView, Times(2)).setErrorViewVisible(false)
+
+        //start loading
+        Mockito.verify(mainView).setMainListVisible(false)
+        Mockito.verify(mainView).setProgressBarVisible(true)
+        //show result
+        Mockito.verify(mainView).setProgressBarVisible(false)
+        Mockito.verify(mainView).setMainListVisible(true)
+        Mockito.verify(mainView).showCurrencies(validData)
+    }
+
+    @Test
+    fun checkRepeatLoading() {
+        doAnswer { Single.just(Collections.EMPTY_LIST) }
+                .`when`(currencyInteractor)
+                .getPairs()
+        mainPresenter.attachView(mainView)
+        mainPresenter.onRepeatLoadingClick()
+        Mockito.verify(currencyInteractor, Times(2)).getPairs()
+    }
+
+    @Test
+    fun checkItemSelection() {
+        doAnswer { Single.just(validData) }
+                .`when`(currencyInteractor)
+                .getPairs()
+        mainPresenter.attachView(mainView)
+        mainPresenter.onItemClick(1)
+        Mockito.verify(router).navigateTo(Screen.PAIR_DETAILS_SCREEN, "ethusd")
     }
 }

@@ -1,6 +1,5 @@
 package net.nikonorov.blockchaincurrency.presentation.main.presenter
 
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -46,7 +45,7 @@ class MainPresenterImpl(private val currencyInteractor: CurrencyInteractor, rout
                     this.view?.showCurrencies(pairs)
                     this.view?.setErrorViewVisible(false)
                 }, {
-                    it.printStackTrace()
+                    Timber.e(it)
                     this.view?.setEmptyListVisible(false)
                     this.view?.setProgressBarVisible(false)
                     this.view?.setMainListVisible(false)
